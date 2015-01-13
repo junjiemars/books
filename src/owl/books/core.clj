@@ -1,11 +1,7 @@
 (ns owl.books.core
-  (:require [ring.util.response :as rur])
-  (:require [ring.middleware
-             [file :as rmf]
-             [resource :as rmr]
-             [not-modified :as rmn]
-             [content-type :as rmc]
-             [session :as rms]]))
+  (:require [compojure.core :refer :all]
+            [compojure.route :as route]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defn handler [request]
   {:status 200
@@ -18,7 +14,9 @@
 (defn destroy []
   (println "#destroy lein ring..."))
 
+(defroutes app-routes
+  (GET "/" [] "Welcome Owl's Books")
+  (route/not-found "not found"))
+
 (def app
-  (-> (fn [{session :session}]
-        (rur/response (str "abc " (:username session))))
-      (rms/wrap-session)))
+  (wrap-defaults app-routes site-defaults))
