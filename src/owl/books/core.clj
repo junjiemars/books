@@ -14,8 +14,15 @@
 (defn destroy []
   (println "#destroy lein ring..."))
 
+(defn user-routes [user-id]
+  (routes
+   (GET "/profile" [] "u'r in profile")
+   (GET "/posts" [] "u'r in posts")))
+
 (defroutes app-routes
   (GET "/" [] "Welcome Owl's Books")
+  (context "/user/:user-id" [user-id]
+           (user-routes user-id))
   (route/not-found "not found"))
 
 (def app
