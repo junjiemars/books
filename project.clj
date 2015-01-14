@@ -8,7 +8,8 @@
                  [ring/ring-defaults "0.1.3"]
                  [hiccup "1.0.5"]
                  ]
-  :plugins [[lein-ring "0.8.13"]]
+  :plugins [[lein-ring "0.8.13" :exclusions [org.clojure/clojure]]]
+  :main owl.books.core
   :ring {:handler owl.books.core/app
          :init owl.books.core/init
          :destroy owl.books.core/destroy

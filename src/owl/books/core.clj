@@ -2,7 +2,8 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
-  (:use [owl.books.views]))
+  (:use [owl.books.views])
+  (:gen-class))
 
 (defn handler [request]
   {:status 200
@@ -28,3 +29,6 @@
 
 (def app
   (wrap-defaults app-routes site-defaults))
+
+(defn -main [& args]
+  (app args))
