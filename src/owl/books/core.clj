@@ -1,8 +1,8 @@
 (ns owl.books.core
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
-  (:use [owl.books.views])
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [owl.books.views :as v])
   (:gen-class))
 
 (defn handler [request]
@@ -19,10 +19,10 @@
 (defn user-routes [user-id]
   (routes
    (GET "/profile" [] "u'r in profile")
-   (GET "/posts" [] (user-posts))))
+   (GET "/posts" [] (v/user-posts))))
 
 (defroutes app-routes
-  (GET "/" [] "Welcome Owl's Books")
+  (GET "/" [] (v/home-page))
   (context "/user/:user-id" [user-id]
            (user-routes user-id))
   (route/not-found "Page not found"))
