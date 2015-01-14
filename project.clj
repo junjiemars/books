@@ -7,6 +7,7 @@
                  [compojure "1.3.1"]
                  [ring/ring-defaults "0.1.3"]
                  [hiccup "1.0.5"]
+                 [korma "0.4.0"]
                  ]
   :plugins [[lein-ring "0.8.13" :exclusions [org.clojure/clojure]]]
   :main owl.books.core
