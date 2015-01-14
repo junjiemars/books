@@ -9,12 +9,13 @@
    (include-css "css/styles.css")])
 
 (def header-links
-  [:div#header-link
+  [:div#header-links
    "[ "
    [:a {:href "/"} "Home"]
    " | "
    [:a {:href "/notes"} "Notes"]
    " ]"])
+
 (defn home-page []
   (html5
    (gen-page-head "Home")
@@ -22,5 +23,10 @@
    header-links
    [:p "Welcome to Owl's Books"]))
 
-(defn user-posts []
-  (html [:span {:class "foo"} "bar"]))
+(defn notes-page [& args]
+  (html5
+   (gen-page-head "Notes")
+   [:h1 "Notes"]
+   header-links
+   [:p "Oh, u got in Notes"]))
+

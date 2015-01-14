@@ -16,15 +16,15 @@
 (defn destroy []
   (println "#destroy lein ring..."))
 
-(defn user-routes [user-id]
+(defn notes-route [note-id]
   (routes
-   (GET "/profile" [] "u'r in profile")
-   (GET "/posts" [] (v/user-posts))))
+   (GET "/" [] (str "default notes:" note-id))
+   (GET "/profile" [] (v/notes-page))))
 
 (defroutes app-routes
   (GET "/" [] (v/home-page))
-  (context "/user/:user-id" [user-id]
-           (user-routes user-id))
+  (context "/notes/:note-id" [note-id]
+           (notes-route note-id))
   (route/not-found "Page not found"))
 
 (def app
